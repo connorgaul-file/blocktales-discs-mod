@@ -1,0 +1,44 @@
+{
+  "disc": "demo3/hatred",
+  "name": [
+    "#7A0000",
+    "#E41A1A",
+    "#7A0000"
+  ],
+  "outer": {
+    "top": "#7A0000",
+    "bottom": "#FF2020",
+    "speed": 0.15
+  },
+  "frame": {
+    "first": "#3A0505",
+    "second": "#0E0008",
+    "softness": 0.2
+  },
+  "phrases": {
+    "gradient": [
+      "#7A0000",
+      "#FF2020"
+    ],
+    "timing": {
+      "original_stays": 36000,
+      "original_scrambles": 2400,
+      "phrase_appears": 1200,
+      "phrase_stays": 2600,
+      "phrase_scrambles": 1200,
+      "original_returns": 1800
+    },
+    "glitch": {
+      "tick": 100,
+      "burst_chance": 0.24,
+      "letter_chance": 0.2,
+      "flicker": 0.2
+    },
+    "list": [
+      "YOU DON'T DESERVE TO RIDE THE SWING.",
+      "YOU CARVED YOUR WAY THROUGH THEM. PIECE BY PIECE. SEARCHING FOR A WAY OUT. AND FOUND NOTHING.",
+      "FOR I. AM THE SCOURGE OF EVERYONE. THAT YOU CAN NO LONGER HIDE.",
+      "LET RUIN BEFALL THEIR CREATION."
+    ]
+  }
+}

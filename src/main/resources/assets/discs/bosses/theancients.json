@@ -1,0 +1,44 @@
+{
+  "disc": "demo4/theancients",
+  "name": [
+    "#AB8000",
+    "#EE1A10",
+    "#AB8000"
+  ],
+  "outer": {
+    "top": "#AB8000",
+    "bottom": "#EE1A10",
+    "speed": 0.5
+  },
+  "frame": {
+    "first": "#2B2000",
+    "second": "#2A0806",
+    "softness": 0.2
+  },
+   "phrases": {
+      "gradient": [
+        "#AB8000",
+        "#EE1A10"
+      ],
+      "timing": {
+        "original_stays": 36000,
+        "original_scrambles": 2400,
+        "phrase_appears": 1200,
+        "phrase_stays": 2600,
+        "phrase_scrambles": 1200,
+        "original_returns": 1800
+      },
+      "glitch": {
+        "tick": 100,
+        "burst_chance": 0.24,
+        "letter_chance": 0.2,
+        "flicker": 0.2
+      },
+      "list": [
+        "꜓ THIS ⧶⧶⧶ ꜓ IS ⧶⧶⧶ ꜓ MUTINY.⧶⧶⧶ ꜓",
+        "THE ∷₯ BLOOD ⎶ꘌ OF SACRIFICE.",
+        "⎶₯꜓⚍⍑⎶ THIS ⧶⧶⧶⍑⎩꜓⧶₯⎶⃲⧶⧶⧶⎩⎶⍑⎶⎶꜓₯ MURDER.⎶ ⎶₯꜓꜓₯ ꜓⍑⎶⎩ HAPPENED ⎶꜓⍑ AT ⎩⍑⎶⚍⍑⎶⎶ ⚍⍑ HANDS ⎶ OF ⍑⎶ TRUST.⍑⎶⚍⍑⎶",
+        "⧶⧶⧶ ⎩ ONE.⎶꜓⍑ DAY.∷ ⎶"
+      ]
+    }
+}

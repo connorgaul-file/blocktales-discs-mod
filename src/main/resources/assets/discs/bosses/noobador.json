@@ -1,0 +1,18 @@
+{
+  "disc": "prologue/noobador",
+  "name": [
+    "#FFC000",
+    "#E14E32",
+    "#FFC000"
+  ],
+  "outer": {
+    "top": "#FFC000",
+    "bottom": "#E14E32",
+    "speed": 0.15
+  },
+  "frame": {
+    "first": "#2E2106",
+    "second": "#1A0A06",
+    "softness": 0.2
+  }
+}

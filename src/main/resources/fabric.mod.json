@@ -5,12 +5,12 @@
 	"name": "Block Tales Discs",
 	"description": "Your favourite songs from the Block Tales OST in form of a... music disc?",
 	"authors": [
-		"kernelframework"
+		"kernelframework: lead"
 	],
 	"contributors": [
-		"z9xomer",
-		"diskspace.",
-		"thegreatshaman"
+		"z9xomer: artist",
+		"diskspace.: artist",
+		"thegreatshaman: artist (peak)"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/block-tales-discs",

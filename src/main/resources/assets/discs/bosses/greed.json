@@ -1,0 +1,43 @@
+{
+  "disc": "demo3/greed",
+  "name": [
+    "#C8FFAB",
+    "#F3B30C"
+  ],
+  "outer": {
+    "top": "#C8FFAB",
+    "bottom": "#F3B30C",
+    "speed": 0.2
+  },
+  "frame": {
+    "first": "#1E2A0F",
+    "second": "#2E2306",
+    "softness": 0.2
+  },
+  "phrases": {
+    "gradient": [
+      "#C8FFAB",
+      "#F3B30C"
+    ],
+    "timing": {
+      "original_stays": 36000,
+      "original_scrambles": 2400,
+      "phrase_appears": 1200,
+      "phrase_stays": 2600,
+      "phrase_scrambles": 1200,
+      "original_returns": 1800
+    },
+    "glitch": {
+      "tick": 100,
+      "burst_chance": 0.24,
+      "letter_chance": 0.2,
+      "flicker": 0.2
+    },
+    "list": [
+      "Just slap together a cheap copy, leave it out on the ground, and BAM! Easy catch!",
+      "Hahahahahahaaaaa! Geez, it's just too easy!",
+      "JACKPOT!",
+      "So c'mon! Let's forget about these nerds, grab those SWORDS, and scram!"
+    ]
+  }
+}

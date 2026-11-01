@@ -1,0 +1,18 @@
+{
+  "disc": "demo1/cruelking",
+  "name": [
+    "#DCCAFF",
+    "#F8F4FF",
+    "#DCCAFF"
+  ],
+  "outer": {
+    "top": "#DCCAFF",
+    "bottom": "#8A6FD6",
+    "speed": 0.1
+  },
+  "frame": {
+    "first": "#241E33",
+    "second": "#0F0D16",
+    "softness": 0.2
+  }
+}

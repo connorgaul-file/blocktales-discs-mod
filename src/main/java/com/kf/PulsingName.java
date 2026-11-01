@@ -4,10 +4,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import org.jspecify.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PulsingName {
     private final String text;
@@ -18,29 +14,13 @@ public class PulsingName {
         this.colors = colors;
     }
 
-    public static @Nullable PulsingName fromBirdflop(String birdflop) {
-        StringBuilder text = new StringBuilder();
-        List<Integer> colors = new ArrayList<>();
-
-        for (String part : birdflop.split("<#")) {
-            if (part.isEmpty()) continue;
-            if (part.length() < 7 || part.charAt(6) != '>') return null;
-
-            int color;
-            try {
-                color = Integer.parseInt(part.substring(0, 6), 16);
-            } catch (NumberFormatException e) {
-                return null;
-            }
-
-            for (char letter : part.substring(7).toCharArray()) {
-                text.append(letter);
-                colors.add(color);
-            }
+    public static PulsingName fromStops(String text, int[] stops) {
+        int[] colors = new int[text.length()];
+        for (int i = 0; i < colors.length; i++) {
+            float position = colors.length == 1 ? 0f : (float) i / (colors.length - 1);
+            colors[i] = TooltipFrames.gradientColor(stops, position);
         }
-
-        if (text.isEmpty()) return null;
-        return new PulsingName(text.toString(), colors.stream().mapToInt(Integer::intValue).toArray());
+        return new PulsingName(text, colors);
     }
 
     public Component at(double speed, long nowMs) {

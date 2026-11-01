@@ -1,0 +1,18 @@
+{
+  "disc": "demo2/bubonicplant",
+  "name": [
+    "#A47215",
+    "#5C3125",
+    "#A47215"
+  ],
+  "outer": {
+    "top": "#A47215",
+    "bottom": "#6E4121",
+    "speed": 0.12
+  },
+  "frame": {
+    "first": "#2A1D08",
+    "second": "#140C0A",
+    "softness": 0.2
+  }
+}

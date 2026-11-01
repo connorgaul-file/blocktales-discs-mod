@@ -12,9 +12,6 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
@@ -50,6 +47,8 @@ public class Discs implements ModInitializer {
 	public static final Set<String> CHAPTER_SET = Set.of(CHAPTER_ORDER);
 	public static final Set<String> BIG_STACKS = Set.of("tix", "band_of_tix");
 
+	private static final Component PLAIN_NAME = Component.literal("Music Disc");
+
 	public static final Map<String, List<Item>> discsPerChapter = new LinkedHashMap<>(16);
 	public static final List<Item> modMaterials = new ArrayList<>();
 
@@ -78,6 +77,8 @@ public class Discs implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(mod -> {
+			mod.findPath("assets/" + MOD_ID + "/bosses").ifPresent(BossData::loadFromJar);
+
 			Path itemAssets = mod.findPath("assets/" + MOD_ID + "/items").orElse(null);
 
 			if (itemAssets == null) return;
@@ -175,7 +176,7 @@ public class Discs implements ModInitializer {
 					orderedDiscs.forEach(output::accept);
 				})
 				.build();
-				discsTab = mainTab; // uhhh yes
+		discsTab = mainTab; // uhhh yes
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, TAB_KEY, mainTab);
 
@@ -239,17 +240,9 @@ public class Discs implements ModInitializer {
 		ResourceKey<Item> discKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, registryPath));
 		ResourceKey<JukeboxSong> songData = ResourceKey.create(Registries.JUKEBOX_SONG, Identifier.fromNamespaceAndPath(MOD_ID, registryPath));
 
-		boolean isBoss = DiscPricing.isBoss(chapter, trackName);
-
-		Component resolvedName = Component.literal("Music Disc");
-		String birdflopString = null;
-		if (isBoss) {
-			birdflopString = DiscPricing.getBossGradient(chapter, trackName);
-			if (birdflopString != null) {
-				resolvedName = parseBirdflop(birdflopString);
-			}
-		}
-		final Component cachedName = resolvedName;
+		// boss status + tooltip style come from assets/discs/bosses/<bossId>.json
+		String bossId = BossData.bossIdForDisc(registryPath);
+		boolean isBoss = bossId != null;
 
 		Item.Properties properties = new Item.Properties()
 				.setId(discKey)
@@ -257,24 +250,15 @@ public class Discs implements ModInitializer {
 				.jukeboxPlayable(songData)
 				.rarity(Rarity.EPIC);
 
-		String tooltipStyle = DiscPricing.getTooltipStyle(chapter, trackName);
-		if (tooltipStyle != null) {
-			properties = properties.component(DataComponents.TOOLTIP_STYLE, Identifier.fromNamespaceAndPath(MOD_ID, tooltipStyle));
+		if (bossId != null) {
+			properties = properties.component(DataComponents.TOOLTIP_STYLE, Identifier.fromNamespaceAndPath(MOD_ID, bossId));
 		}
-
-		final Identifier styleId = tooltipStyle == null ? null : Identifier.fromNamespaceAndPath(MOD_ID, tooltipStyle);
-		final PulsingName pulsingName = (styleId == null || birdflopString == null) ? null : PulsingName.fromBirdflop(birdflopString);
 
 		Item vinyl = new Item(properties) {
 			@Override
 			public Component getName(ItemStack stack) {
-				if (styleId != null && pulsingName != null) {
-					TooltipFrames.Frame frame = TooltipFrames.get(styleId);
-					if (frame != null) {
-						return pulsingName.at(frame.speed(), System.currentTimeMillis());
-					}
-				}
-				return cachedName;
+				BossData.Boss boss = BossData.forDisc(registryPath);
+				return boss == null ? PLAIN_NAME : boss.displayName(System.currentTimeMillis());
 			}
 		};
 
@@ -291,36 +275,5 @@ public class Discs implements ModInitializer {
 		if (isBoss) {
 			bossDiscs.add(vinyl);
 		}
-	}
-
-	private static Component parseBirdflop(String formattedText) {
-		MutableComponent component = Component.empty();
-		String[] parts = formattedText.split("<#");
-
-		for (int i = 0; i < parts.length; i++) {
-			String part = parts[i];
-			if (part.isEmpty()) continue;
-
-			if (i == 0 && !formattedText.startsWith("<#")) {
-				component.append(Component.literal(part));
-				continue;
-			}
-
-			if (part.length() >= 7 && part.charAt(6) == '>') {
-				String hex = part.substring(0, 6);
-				String text = part.substring(7);
-
-				try {
-					int color = Integer.parseInt(hex, 16);
-					component.append(Component.literal(text).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));
-				} catch (NumberFormatException e) {
-					component.append(Component.literal("<#" + part));
-				}
-			} else {
-				component.append(Component.literal("<#" + part));
-			}
-		}
-
-		return component;
 	}
 }

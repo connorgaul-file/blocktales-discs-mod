@@ -1,17 +1,9 @@
 package com.kf;
 
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.ARGB;
 import org.jspecify.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-
-// usage (client side):
-//  TooltipFrames.add("hatred", 0x7A0000, 0xFF2020);
-//  TooltipFrames.add("hatred", 0x7A0000, 0xFF2020, 0.15);
-//  TooltipFrames.add("hatred", 0x7A0000, 0xFF2020, 0.15, 0x3A0505, 0x0E0008);
-
+// the tooltip style id on a disc is discs:<bossId>
 public class TooltipFrames {
 
     public static final float DEFAULT_SOFTNESS = 0.2f;
@@ -25,34 +17,12 @@ public class TooltipFrames {
         }
     }
 
-    private static final Map<Identifier, Frame> frames = new HashMap<>();
-
-    public static void add(String styleName, int topColor, int bottomColor) {
-        add(styleName, topColor, bottomColor, 0);
-    }
-
-    public static void add(String styleName, int topColor, int bottomColor, double speed) {
-        put(styleName, new Frame(ARGB.opaque(topColor), ARGB.opaque(bottomColor), speed, null));
-    }
-
-    public static void add(String styleName, int topColor, int bottomColor, double speed, int backgroundFirst, int backgroundSecond) {
-        add(styleName, topColor, bottomColor, speed, backgroundFirst, backgroundSecond, DEFAULT_SOFTNESS);
-    }
-
-    public static void add(String styleName, int topColor, int bottomColor, double speed, int backgroundFirst, int backgroundSecond, float softness) {
-        Background background = new Background(backgroundFirst & 0xFFFFFF, backgroundSecond & 0xFFFFFF, softness);
-        put(styleName, new Frame(ARGB.opaque(topColor), ARGB.opaque(bottomColor), speed, background));
-    }
-
-    private static void put(String styleName, Frame frame) {
-        frames.put(Identifier.fromNamespaceAndPath(Discs.MOD_ID, styleName), frame);
-    }
-
     public static @Nullable Frame get(@Nullable Identifier style) {
-        if (style == null) {
+        if (style == null || !style.getNamespace().equals(Discs.MOD_ID)) {
             return null;
         }
-        return frames.get(style);
+        BossData.Boss boss = BossData.get(style.getPath());
+        return boss == null ? null : boss.frame();
     }
 
     public static int slidingColor(int[] stops, float position, double speed, long nowMs) {
@@ -63,7 +33,7 @@ public class TooltipFrames {
         return gradientColor(stops, (float) wave);
     }
 
-    private static int gradientColor(int[] stops, float position) {
+    public static int gradientColor(int[] stops, float position) {
         if (stops.length == 1) {
             return stops[0] & 0xFFFFFF;
         }

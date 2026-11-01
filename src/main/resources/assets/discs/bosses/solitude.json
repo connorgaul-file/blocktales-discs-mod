@@ -1,0 +1,44 @@
+{
+  "disc": "demo3/solitude",
+  "name": [
+    "#6E69B0",
+    "#383653",
+    "#6E69B0"
+  ],
+  "outer": {
+    "top": "#8F8AD6",
+    "bottom": "#4A4880",
+    "speed": 0.1
+  },
+  "frame": {
+    "first": "#24233A",
+    "second": "#101018",
+    "softness": 0.2
+  },
+  "phrases": {
+    "gradient": [
+      "#6E69B0",
+      "#2A293C"
+    ],
+    "timing": {
+      "original_stays": 36000,
+      "original_scrambles": 2400,
+      "phrase_appears": 1200,
+      "phrase_stays": 2600,
+      "phrase_scrambles": 1200,
+      "original_returns": 1800
+    },
+    "glitch": {
+      "tick": 100,
+      "burst_chance": 0.24,
+      "letter_chance": 0.2,
+      "flicker": 0.2
+    },
+    "list": [
+      "Do you miss your grandparents? Do you miss your home? Do you miss your future?",
+      "Please... Step away from HIM... he just wants to hurt you...",
+      "He's tricking you... So you won't...",
+      "Oh.. You're here..."
+    ]
+  }
+}

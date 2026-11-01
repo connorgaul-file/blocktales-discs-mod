@@ -1,0 +1,18 @@
+{
+  "disc": "demo2/suprememosquito",
+  "name": [
+    "#946B73",
+    "#738C6D",
+    "#946B73"
+  ],
+  "outer": {
+    "top": "#946B73",
+    "bottom": "#738C6D",
+    "speed": 0.18
+  },
+  "frame": {
+    "first": "#241B1E",
+    "second": "#121A12",
+    "softness": 0.2
+  }
+}

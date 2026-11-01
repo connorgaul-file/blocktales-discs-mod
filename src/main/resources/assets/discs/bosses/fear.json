@@ -1,0 +1,44 @@
+{
+  "disc": "demo3/fear",
+  "name": [
+    "#9500BE",
+    "#3F004A",
+    "#9500BE"
+  ],
+  "outer": {
+    "top": "#B84DFF",
+    "bottom": "#5A1A7A",
+    "speed": 0.15
+  },
+  "frame": {
+    "first": "#2A0033",
+    "second": "#0E0012",
+    "softness": 0.2
+  },
+  "phrases": {
+    "gradient": [
+      "#9500BE",
+      "#29002D"
+    ],
+    "timing": {
+      "original_stays": 36000,
+      "original_scrambles": 2400,
+      "phrase_appears": 1200,
+      "phrase_stays": 2600,
+      "phrase_scrambles": 1200,
+      "original_returns": 1800
+    },
+    "glitch": {
+      "tick": 100,
+      "burst_chance": 0.24,
+      "letter_chance": 0.2,
+      "flicker": 0.2
+    },
+    "list": [
+      "YOU'RE BEING USED!",
+      "Please... P-Please listen...",
+      "IT is m-manipulating you...",
+      "KILLING ME WON'T SAVE YOU!!"
+    ]
+  }
+}
