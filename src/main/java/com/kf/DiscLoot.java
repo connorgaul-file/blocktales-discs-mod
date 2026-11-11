@@ -10,7 +10,7 @@ import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.io.BufferedReader;
 import java.nio.file.Files;
@@ -99,7 +99,7 @@ public class DiscLoot {
             LootPoolEntryContainer.Builder<?>[] entriesArray = itemEntries.toArray(new LootPoolEntryContainer.Builder<?>[0]);
 
             table.pool(LootPool.lootPool()
-                    .setRolls(ConstantValue.exactly(1))
+                    .setRolls(ContextIntProviders.exactly(1))
                     .add(AlternativesEntry.alternatives(entriesArray))
                     .build());
         }

@@ -26,7 +26,7 @@ public abstract class DiscAdvancementToastMixin {
         }
 
         boolean challenge = advancement.value().display()
-                .map(display -> display.getType() == AdvancementType.CHALLENGE)
+                .map(display -> display.type() == AdvancementType.CHALLENGE)
                 .orElse(false);
 
         cir.setReturnValue(challenge ? ModSounds.ADVANCEMENT_CHALLENGE : ModSounds.ADVANCEMENT);

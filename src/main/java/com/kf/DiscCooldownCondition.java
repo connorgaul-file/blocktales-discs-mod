@@ -39,12 +39,12 @@ public class DiscCooldownCondition implements LootItemCondition {
     @Override
     public boolean test(LootContext context) {
         // basically it differentiates entity from chests so it can work (indirect kills do not count but that's something out of my control)
-        Entity entity = context.getOptionalParameter(LootContextParams.LAST_DAMAGE_PLAYER);
+        Entity entity = context.getOptional(LootContextParams.LAST_DAMAGE_PLAYER);
         if (entity == null) {
-            entity = context.getOptionalParameter(LootContextParams.THIS_ENTITY);
+            entity = context.getOptional(LootContextParams.THIS_ENTITY);
         }
         if (entity == null) {
-            entity = context.getOptionalParameter(LootContextParams.INTERACTING_ENTITY);
+            entity = context.getOptional(LootContextParams.INTERACTING_ENTITY);
         }
 
         if (!(entity instanceof Player player)) {

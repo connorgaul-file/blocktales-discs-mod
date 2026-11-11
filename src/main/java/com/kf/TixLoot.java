@@ -6,8 +6,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.List;
 
@@ -42,10 +41,10 @@ public class TixLoot {
             }
 
             tableBuilder.pool(LootPool.lootPool()
-                    .setRolls(ConstantValue.exactly(1))
+                    .setRolls(ContextIntProviders.exactly(1))
                     .when(LootItemRandomChanceCondition.randomChance(chance))
                     .add(LootItem.lootTableItem(tix)
-                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(minAmount, maxAmount))))
+                            .apply(SetItemCountFunction.setCount(ContextIntProviders.between(minAmount, maxAmount))))
                     .build());
         });
     }
